@@ -34,10 +34,78 @@ $(document).ready(function(){
 		var footer = $('footer').outerHeight();
 		var topOff = (asideY-scrollMax);
 		var bottomOff = $(document).height()-(contactus+footer+asideH+scrollMax);
-		var stopStick = (contactus+footer);
 
         // console.log('top scroll: '+sTop,'bottom offset: '+bottomOff,'contacth: '+contactus,'footerh: '+footer,'asideh: '+asideH);
-        
+/*        
+		if(
+                sTop<stickyStart &&
+                stickyElement.hasClass('is_sticky')
+            ){  
+                stickyElement.removeClass('is_sticky')
+                    .addClass('is_static')
+                    .css({
+                        top: 0 ,
+                        bottom: 'auto'
+                    });
+            }
+
+            if(
+                sTop>=stickyStart &&
+                sTop<=stickyEnd &&
+                stickyElement.hasClass('is_static')
+            ){  
+                stickyElement.removeClass('is_static')
+                    .removeClass('is_bottom')
+                    .addClass('is_sticky')
+                    .css({
+                        top: 60,
+                        bottom: 'auto'
+                    });
+            }
+
+            if(
+                sTop>=stickyStart &&
+                sTop<=stickyEnd &&
+                stickyElement.hasClass('is_bottom')
+            ){  
+                stickyElement.removeClass('is_bottom')
+                    .addClass('is_sticky')
+                    .css({
+                        top: 60,
+                        bottom: 'auto'
+                    });
+            }
+
+            //after container
+            if(
+                sTop>stickyEnd &&
+                stickyElement.hasClass('is_sticky')
+            ){
+
+                stickyElement.removeClass('is_sticky')
+                    .addClass('is_bottom')
+                    .css({
+                        bottom: stickyElementSpan.outerHeight(),
+                        top: 'auto'
+                    });
+            }
+
+            //back at it again
+            if(
+                sTop>stickyEnd &&
+                stickyElement.hasClass('is_bottom')
+            ){
+
+                stickyElement.removeClass('is_sticky')
+                    .css({
+                        bottom: stickyElementSpan.outerHeight(),
+                        top: 'auto'
+                    });
+            }
+        }
+
+        */
+
 
         if(sTop > scrollMax){  
             $('nav').addClass("stickynav");
@@ -51,8 +119,8 @@ $(document).ready(function(){
 				sTop<topOff &&
 				toc.hasClass('stickyaside')
 			){	
-				toc.removeClass('stickyaside');
-				toc.addClass('staticaside');
+				toc.removeClass('stickyaside')
+					.addClass('staticaside');
 			}
 
 			if(
@@ -60,57 +128,52 @@ $(document).ready(function(){
 				sTop<=bottomOff &&
 				toc.hasClass('staticaside')
 			){	
-				toc.removeClass('staticaside');
-				toc.removeClass('bottomaside');
-				toc.addClass('stickyaside').css({
-					top: scrollMax
-				})
-			}
-
-			if(
-				sTop<topOff &&
-				toc.hasClass('stickyaside')
-			){	
-				toc.removeClass('stickyaside');
-				toc.addClass('staticaside');
-				
-			}
-
-			if(
-				sTop>bottomOff &&
-				toc.hasClass('stickyaside')
-			){
-
-				toc.removeClass('stickyaside');
-				toc.addClass('bottomaside').css({
-					top: 'inherit',
-					bottom: contactus
-				})
-			}
-
-			if(
-				sTop>bottomOff &&
-				toc.hasClass('bottomaside')
-			){
-
-				toc.removeClass('stickyaside');
-				toc.css({
-					top: 'inherit',
-					bottom: contactus
-				})
+				toc.removeClass('staticaside')
+					.removeClass('bottomaside')
+					.addClass('stickyaside').css({
+						top: scrollMax,
+						bottom: 'auto'
+					})
 			}
 
 			if(
 				sTop>=topOff &&
 				sTop<=bottomOff &&
 				toc.hasClass('bottomaside')
+			){	
+				toc.removeClass('bottomaside')
+					.addClass('stickyaside').css({
+						top: scrollMax,
+						bottom: 'auto'
+					})
+			}
+
+			if(
+				sTop>bottomOff &&
+				toc.hasClass('stickyaside')
 			){
 
-				toc.removeClass('bottomaside');
-				toc.addClass('stickyaside').css({
-					top: scrollMax
-				})
+				toc.removeClass('stickyaside')
+					.addClass('bottomaside')
+					.css({
+						top: 'auto',
+						bottom: contactus
+					})
 			}
+
+
+			if(
+				sTop>bottomOff &&
+				toc.hasClass('bottomaside')
+			){
+
+				toc.removeClass('stickyaside')
+					.css({
+						top: 'auto',
+						bottom: contactus
+					})
+			}
+
         };
     });
 

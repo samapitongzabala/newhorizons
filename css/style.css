@@ -1274,7 +1274,7 @@
 				width: 35%;
 				bottom: 0;
 				right: 0;
-				top: inherit;
+				top: auto;
 			}
 
 			#toc.bottomaside aside{
